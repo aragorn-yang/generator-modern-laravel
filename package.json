@@ -2,7 +2,7 @@
   "name": "generator-modern-laravel",
   "version": "0.0.0",
   "description": "Scaffold modern Laravel 5 applications",
-  "homepage": "",
+  "homepage": "https://github.com/aragorn-yang/generator-modern-laravel",
   "author": {
     "name": "Aragorn Yang",
     "email": "aragorn.yang@gmail.com",
@@ -60,13 +60,20 @@
       "node": true
     },
     "rules": {
-      "prettier/prettier": "error"
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
     },
     "plugins": [
       "prettier"
     ]
   },
   "scripts": {
+    "precommit": "lint-staged",
     "pretest": "eslint .",
     "test": "jest"
   },

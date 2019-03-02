@@ -1,0 +1,13 @@
+watch:
+  directories:
+    - app
+    - src
+    - tests
+  fileMask: '*.php'
+notifications:
+  passingTests: true
+  failingTests: true
+phpunit:
+  #  binaryPath: vendor/bin/phpunit
+  binaryPath: vendor/bin/paratest
+  arguments: '--stop-on-failure'
