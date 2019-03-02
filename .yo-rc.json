@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Aragorn Yang",
+      "authorEmail": "aragorn.yang@gmail.com",
+      "authorUrl": "https://github.com/aragorn-yang"
+    }
+  }
+}
