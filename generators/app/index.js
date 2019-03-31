@@ -34,6 +34,17 @@ module.exports = class extends Generator {
         choices: ['5.8.*', '5.7.*'],
         default: '5.8.*',
       },
+      {
+        type: 'list',
+        name: 'packagist',
+        message: 'Which composer repo?',
+        choices: [
+          'https://packagist.org',
+          'https://packagist.phpcomposer.com',
+          'https://packagist.laravel-china.org',
+        ],
+        default: 'https://packagist.org',
+      },
     ];
 
     return this.prompt(prompts).then(props => {
@@ -45,6 +56,8 @@ module.exports = class extends Generator {
   install() {
     this.log(yosay(`Install ${chalk.blue('Laravel')}`));
     this._installLaravel();
+    this.log(yosay(`Set ${chalk.blue('packagist')}`));
+    this._setPackagist();
     this.log(yosay(`Install ${chalk.blue('Packages for testing')}`));
     this._installLaravelPackagesForTesting();
     this.log(yosay(`Install ${chalk.blue('ide helper')}`));
@@ -176,5 +189,14 @@ module.exports = class extends Generator {
     this.spawnCommandSync('git', ['add', '.']);
     this.spawnCommandSync('git', ['status']);
     this.spawnCommandSync('git', ['commit', '-m', 'Initial commit']);
+  }
+
+  _setPackagist() {
+    this.spawnCommandSync('composer', [
+      'config',
+      'repo.packagist',
+      'composer',
+      this.props.packagist,
+    ]);
   }
 };
