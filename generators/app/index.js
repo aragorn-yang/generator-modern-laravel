@@ -39,11 +39,12 @@ module.exports = class extends Generator {
         name: 'packagist',
         message: 'Which composer repo?',
         choices: [
+          '',
           'https://packagist.org',
           'https://packagist.phpcomposer.com',
           'https://packagist.laravel-china.org',
         ],
-        default: 'https://packagist.org',
+        default: '',
       },
     ];
 
@@ -192,11 +193,13 @@ module.exports = class extends Generator {
   }
 
   _setPackagist() {
-    this.spawnCommandSync('composer', [
-      'config',
-      'repo.packagist',
-      'composer',
-      this.props.packagist,
-    ]);
+    if (this.props.packagist !== '') {
+      this.spawnCommandSync('composer', [
+        'config',
+        'repo.packagist',
+        'composer',
+        this.props.packagist,
+      ]);
+    }
   }
 };
